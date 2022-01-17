@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/widgets/image_input.dart';
+import 'package:my_app/widgets/location_input.dart';
 import 'dart:io';
 import 'package:provider/provider.dart';
 import '../providers/great_places.dart';
@@ -69,6 +70,10 @@ class _AddPlacesListState extends State<AddPlacesList> {
                       height: 10,
                     ),
                     ImageInput(_selectImage),
+                    SizedBox(
+                      height: 10,
+                    ),
+                  LocationInput()
                   ],
                 ),
               ),
