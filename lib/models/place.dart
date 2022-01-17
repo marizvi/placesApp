@@ -15,8 +15,8 @@ class PlaceLocation {
 class Place {
   final String id;
   final String title;
-  final File image; //dart:io
-  final PlaceLocation location;
+  final File? image; //dart:io
+  final PlaceLocation? location;
 
   Place(
       {required this.id,
