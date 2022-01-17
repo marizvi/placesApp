@@ -73,7 +73,7 @@ class _AddPlacesListState extends State<AddPlacesList> {
                     SizedBox(
                       height: 10,
                     ),
-                  LocationInput()
+                    LocationInput(),
                   ],
                 ),
               ),

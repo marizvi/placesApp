@@ -13,8 +13,11 @@ class _LocationInputState extends State<LocationInput> {
     return Column(
       children: [
         Container(
+          decoration:
+              BoxDecoration(border: Border.all(width: 1, color: Colors.grey)),
           height: 170,
           width: double.infinity,
+          alignment: Alignment.center,
           child: _previewImageUrl == null
               ? Text(
                   'No location Chosen',
@@ -27,14 +30,15 @@ class _LocationInputState extends State<LocationInput> {
                 ),
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton.icon(
+            TextButton.icon(
               onPressed: () {},
               icon: Icon(Icons.location_on),
               label: Text('Current Location',
                   style: TextStyle(color: Theme.of(context).primaryColor)),
             ),
-            ElevatedButton.icon(
+            TextButton.icon(
               onPressed: () {},
               icon: Icon(Icons.map),
               label: Text('Select on map',
