@@ -29,9 +29,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   provider: ^6.0.2
-  image_picker: ^0.8.4+1
-  path_provider: ^2.0.4
+  image_picker: ^0.8.4+1 #for capturing image either from camera or gallery
+  path_provider: ^2.0.4 #to get available free path on device
   path: ^1.8.0
+  sqflite: ^2.0.2
 
 dev_dependencies:
   flutter_test:
