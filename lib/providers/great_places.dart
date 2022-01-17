@@ -23,4 +23,6 @@ class GreatPlaces with ChangeNotifier {
       'image': newPlace.image!.path
     });
   }
+
+  static Future<void> getData() {}
 }
