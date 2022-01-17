@@ -24,7 +24,9 @@ class DBHelper {
     //entry will be replaced
   }
 
-  static Future<void> getData(String table) async {
+  static Future<List<Map<String, Object?>>> getData(String table) async {
     final sqlDb = await DBHelper.database();
+    return sqlDb.query(table);
+    //hover on .query to know the return type of future
   }
 }

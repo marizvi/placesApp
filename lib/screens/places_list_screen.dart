@@ -18,24 +18,35 @@ class PlaceListScreen extends StatelessWidget {
           ],
         ),
         body: Center(
-          child: Consumer<GreatPlaces>(
-            child: Center(
-              child: Text("Got no places yet, start adding some"),
-            ),
-            builder: (ctx, greaPlaces, ch) => greaPlaces.items.length <= 0
-                ? ch as Widget
-                : ListView.builder(
-                    itemBuilder: (ctx, i) => ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage:
-                            FileImage(greaPlaces.items[i].image as File),
-                      ),
-                      title: Text(greaPlaces.items[i].title),
-                      onTap: () {},
+          child: FutureBuilder(
+              future: Provider.of<GreatPlaces>(context, listen: false)
+                  .fetchAndSetPlaces(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else
+                  return Consumer<GreatPlaces>(
+                    child: Center(
+                      child: Text("Got no places yet, start adding some"),
                     ),
-                    itemCount: greaPlaces.items.length,
-                  ),
-          ),
+                    builder: (ctx, greaPlaces, ch) =>
+                        greaPlaces.items.length <= 0
+                            ? ch as Widget
+                            : ListView.builder(
+                                itemBuilder: (ctx, i) => ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundImage: FileImage(
+                                        greaPlaces.items[i].image as File),
+                                  ),
+                                  title: Text(greaPlaces.items[i].title),
+                                  onTap: () {},
+                                ),
+                                itemCount: greaPlaces.items.length,
+                              ),
+                  );
+              }),
         ));
   }
 }

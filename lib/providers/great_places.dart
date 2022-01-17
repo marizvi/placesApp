@@ -24,5 +24,15 @@ class GreatPlaces with ChangeNotifier {
     });
   }
 
-  static Future<void> getData() {}
+  Future<void> fetchAndSetPlaces() async {
+    final datalist = await DBHelper.getData('places');
+    _items = datalist
+        .map((item) => Place(
+            id: item['id'] as String,
+            title: item['title'] as String,
+            image: File(item['image'] as String),
+            location: null))
+        .toList();
+    notifyListeners();
+  }
 }
