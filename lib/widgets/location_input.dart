@@ -43,23 +43,23 @@ class _LocationInputState extends State<LocationInput> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Container(
-        //   decoration:
-        //       BoxDecoration(border: Border.all(width: 1, color: Colors.grey)),
-        //   height: 170,
-        //   width: double.infinity,
-        //   alignment: Alignment.center,
-        //   child: _previewImageUrl == null
-        //       ? Text(
-        //           'No location Chosen',
-        //           textAlign: TextAlign.center,
-        //         )
-        //       : Image.network(
-        //           _previewImageUrl ?? '',
-        //           fit: BoxFit.cover,
-        //           width: double.infinity,
-        //         ),
-        // ),
+        Container(
+          decoration:
+              BoxDecoration(border: Border.all(width: 1, color: Colors.grey)),
+          height: 170,
+          width: double.infinity,
+          alignment: Alignment.center,
+          child: _previewImageUrl == null
+              ? Text(
+                  'No location Chosen',
+                  textAlign: TextAlign.center,
+                )
+              : Image.network(
+                  _previewImageUrl ?? '',
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                ),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
