@@ -3,6 +3,7 @@ import '../models/place.dart';
 import 'dart:io';
 import '../helpers/db_helper.dart';
 import '../helpers/locationHelper.dart';
+import 'package:geocoder/geocoder.dart';
 
 class GreatPlaces with ChangeNotifier {
   List<Place> _items = [];
@@ -15,6 +16,12 @@ class GreatPlaces with ChangeNotifier {
     // human readable address
     final address = await LocationHelper.getPlaceAddress(
         pickedLocation.latitude, pickedLocation.longitude);
+    // final coordinates =
+    //     new Coordinates(pickedLocation.latitude, pickedLocation.longitude);
+    // var addresses =
+    //     await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    // print("addresses:");
+    // print(addresses.first);
     final updatedLocation = PlaceLocation(
         latitude: pickedLocation.latitude,
         longitude: pickedLocation.longitude,
