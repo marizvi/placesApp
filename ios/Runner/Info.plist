@@ -24,6 +24,12 @@
 	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<String>We need to take a picture</String>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<String>Need to get user permission</String>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<String>Need to get User permission</String>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<String>We need to take a picture</String>
 	<key>NSCameraUsageDescription</key>
 	<String>We need to take a picture</String>
 	<key>UILaunchStoryboardName</key>
