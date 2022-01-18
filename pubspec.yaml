@@ -34,6 +34,8 @@ dependencies:
   path: ^1.8.0
   sqflite: ^2.0.2
   location: ^4.3.0
+  google_maps_flutter: ^2.1.1
+
   
 
 dev_dependencies:
