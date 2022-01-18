@@ -23,12 +23,15 @@ class _AddPlacesListState extends State<AddPlacesList> {
     this._pickedImage = pickedImage;
   }
 
-  void _selectLocation(double lat, double long) {
+  void _selectLocation(double lat, double lang) {
     //..
+    _placeLocation = PlaceLocation(latitude: lat, longitude: lang);
   }
 
   void _savePlace() {
-    if (_titleController.text.isEmpty || _pickedImage == null) {
+    if (_titleController.text.isEmpty ||
+        _pickedImage == null ||
+        _placeLocation == null) {
       print('Error: Fields are empty');
       showDialog(
           context: context,
@@ -48,7 +51,8 @@ class _AddPlacesListState extends State<AddPlacesList> {
       return;
     }
     final places = Provider.of<GreatPlaces>(context, listen: false);
-    places.addPlace(_titleController.text, _pickedImage);
+    places.addPlace(
+        _titleController.text, _pickedImage, _placeLocation as PlaceLocation);
     Navigator.of(context).pop();
   }
 
