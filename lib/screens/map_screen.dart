@@ -18,11 +18,29 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  LatLng? _picekdLocation;
+  void _selectLocation(LatLng position) {
+    setState(() {
+      _picekdLocation = position;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Map'),
+        actions: [
+          if (widget.isSelecting)
+            IconButton(
+                onPressed: _picekdLocation == null
+                    ? null
+                    : () {
+                        Navigator.of(context).pop(
+                            _picekdLocation); //will now send data to location_input.dart
+                      },
+                icon: Icon(Icons.check))
+        ],
       ),
       body: GoogleMap(
         initialCameraPosition: CameraPosition(
@@ -32,6 +50,14 @@ class _MapScreenState extends State<MapScreen> {
           ),
           zoom: 16,
         ),
+        onTap: widget.isSelecting ? _selectLocation : null,
+        markers: _picekdLocation == null
+            ? {}
+            : {
+                Marker(
+                    markerId: MarkerId('m1'),
+                    position: _picekdLocation as LatLng)
+              },
       ),
     );
   }

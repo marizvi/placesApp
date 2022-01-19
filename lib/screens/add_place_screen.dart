@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/models/place.dart';
 import 'package:my_app/widgets/image_input.dart';
 import 'package:my_app/widgets/location_input.dart';
 import 'dart:io';
@@ -13,12 +14,24 @@ class AddPlacesList extends StatefulWidget {
 class _AddPlacesListState extends State<AddPlacesList> {
   final _titleController = TextEditingController();
   File? _pickedImage;
+  PlaceLocation? _placeLocation;
+  // we are creating selectimage and selectlocation methods here
+  // because we have to save form at this page only
+  // and also have to transfer all 3 data togethor
+  //(title,image,location)
   void _selectImage(File pickedImage) {
     this._pickedImage = pickedImage;
   }
 
+  void _selectLocation(double lat, double lang) {
+    //..
+    _placeLocation = PlaceLocation(latitude: lat, longitude: lang);
+  }
+
   void _savePlace() {
-    if (_titleController.text.isEmpty || _pickedImage == null) {
+    if (_titleController.text.isEmpty ||
+        _pickedImage == null ||
+        _placeLocation == null) {
       print('Error: Fields are empty');
       showDialog(
           context: context,
@@ -38,7 +51,8 @@ class _AddPlacesListState extends State<AddPlacesList> {
       return;
     }
     final places = Provider.of<GreatPlaces>(context, listen: false);
-    places.addPlace(_titleController.text, _pickedImage);
+    places.addPlace(
+        _titleController.text, _pickedImage, _placeLocation as PlaceLocation);
     Navigator.of(context).pop();
   }
 
@@ -73,7 +87,7 @@ class _AddPlacesListState extends State<AddPlacesList> {
                     SizedBox(
                       height: 10,
                     ),
-                    LocationInput(),
+                    LocationInput(_selectLocation),
                   ],
                 ),
               ),
