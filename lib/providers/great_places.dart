@@ -3,6 +3,7 @@ import '../models/place.dart';
 import 'dart:io';
 import '../helpers/db_helper.dart';
 import '../helpers/locationHelper.dart';
+// import 'package:geocode/geocode.dart';
 import 'package:geocoder/geocoder.dart';
 
 class GreatPlaces with ChangeNotifier {
@@ -14,14 +15,25 @@ class GreatPlaces with ChangeNotifier {
   Future<void> addPlace(
       String title, File? image, PlaceLocation pickedLocation) async {
     // human readable address
-    final address = await LocationHelper.getPlaceAddress(
-        pickedLocation.latitude, pickedLocation.longitude);
-    // final coordinates =
-    //     new Coordinates(pickedLocation.latitude, pickedLocation.longitude);
-    // var addresses =
-    //     await Geocoder.local.findAddressesFromCoordinates(coordinates);
-    // print("addresses:");
-    // print(addresses.first);
+    // final address = await LocationHelper.getPlaceAddress(
+    //     pickedLocation.latitude, pickedLocation.longitude);
+
+    final coordinates =
+        new Coordinates(pickedLocation.latitude, pickedLocation.longitude);
+    var addresses =
+        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    var address = '${addresses.first.addressLine}';
+
+    //use below geocodinig technique if geocoder gets completeley
+    //deparcated
+    ////for this import package:geocode/geocode.dart
+    // GeoCode geoCode = GeoCode();
+    // final addresses = await geoCode.reverseGeocoding(
+    //     latitude: pickedLocation.latitude, longitude: pickedLocation.longitude);
+
+    // final address =
+    //     '${addresses.streetAddress}, ${addresses.city}, ${addresses.region}';
+
     final updatedLocation = PlaceLocation(
         latitude: pickedLocation.latitude,
         longitude: pickedLocation.longitude,
