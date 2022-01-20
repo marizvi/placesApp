@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:my_app/models/place.dart';
 import 'package:my_app/screens/map_screen.dart';
@@ -25,14 +23,14 @@ class PlaceDetailScreen extends StatelessWidget {
               width: double.infinity,
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 20),
           Text(
             selectedPlace.location!.address as String,
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.grey, fontSize: 20),
           ),
           SizedBox(
-            height: 10,
+            height: 20,
           ),
           MaterialButton(
             onPressed: () {
@@ -42,7 +40,10 @@ class PlaceDetailScreen extends StatelessWidget {
                 ),
               ));
             },
-            splashColor: Colors.white,
+            splashColor: Colors.pink[300],
+            elevation: 5,
+            color: Colors.pink,
+            textColor: Colors.white,
             child: Text('View on Map'),
           )
         ],

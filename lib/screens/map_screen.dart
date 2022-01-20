@@ -57,12 +57,14 @@ class _MapScreenState extends State<MapScreen> {
             //print(value.latitude);
             //},
             widget.isSelecting ? _selectLocation : null,
-        markers: _picekdLocation == null
+        markers: (_picekdLocation == null && widget.isSelecting)
             ? {}
             : {
                 Marker(
                     markerId: MarkerId('m1'),
-                    position: _picekdLocation as LatLng)
+                    position: _picekdLocation ??
+                        LatLng(widget.initialLocation.latitude,
+                            widget.initialLocation.longitude))
               },
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/helpers/custom_route.dart';
 import 'package:my_app/screens/add_place_screen.dart';
 import 'package:my_app/screens/place_detail_screen.dart';
 import 'package:my_app/screens/places_list_screen.dart';
@@ -18,6 +19,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+            TargetPlatform.android: CustomPageTransitionBuilder(),
+            TargetPlatform.iOS: CustomPageTransitionBuilder(),
+          }),
           primarySwatch: Colors.indigo,
           accentColor: Colors.amber,
         ),
