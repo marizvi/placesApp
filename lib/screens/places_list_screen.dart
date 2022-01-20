@@ -34,22 +34,27 @@ class PlaceListScreen extends StatelessWidget {
                     builder: (ctx, greaPlaces, ch) =>
                         greaPlaces.items.length <= 0
                             ? ch as Widget
-                            : ListView.builder(
-                                itemBuilder: (ctx, i) => ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundImage: FileImage(
-                                        greaPlaces.items[i].image as File),
+                            : Card(
+                                elevation: 6,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: ListView.builder(
+                                  itemBuilder: (ctx, i) => ListTile(
+                                    leading: CircleAvatar(
+                                      backgroundImage: FileImage(
+                                          greaPlaces.items[i].image as File),
+                                    ),
+                                    title: Text(greaPlaces.items[i].title),
+                                    subtitle: Text(greaPlaces
+                                        .items[i].location!.address as String),
+                                    onTap: () {
+                                      Navigator.of(context).pushNamed(
+                                          '/place_detail',
+                                          arguments: greaPlaces.items[i].id);
+                                    },
                                   ),
-                                  title: Text(greaPlaces.items[i].title),
-                                  subtitle: Text(greaPlaces
-                                      .items[i].location!.address as String),
-                                  onTap: () {
-                                    Navigator.of(context).pushNamed(
-                                        '/place_detail',
-                                        arguments: greaPlaces.items[i].id);
-                                  },
+                                  itemCount: greaPlaces.items.length,
                                 ),
-                                itemCount: greaPlaces.items.length,
                               ),
                   );
               }),

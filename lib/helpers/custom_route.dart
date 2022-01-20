@@ -28,27 +28,39 @@ class CustomPageTransitionBuilder extends PageTransitionsBuilder {
       Animation<double> animation,
       Animation<double> secondaryAnimation,
       Widget child) {
-    const begin = Offset(0.0, 1.0);
+    const begin = Offset(-1.0, 0.0);
+    const begin2 = Offset(0.0, 1.0);
     const end = Offset.zero;
-    const curve = Curves.ease;
+    const curve = Curves.decelerate;
     // final tween = Tween(begin: begin, end: end);
     var tween = Tween(
       begin: begin,
       end: end,
     ).chain(CurveTween(curve: curve));
+    var tween2 = Tween(
+      begin: begin2,
+      end: end,
+    ).chain(CurveTween(curve: curve));
     final offsetAnimation = animation.drive(tween);
+    final offsetAnimation2 = animation.drive(tween2);
 
     if (route.settings.name == "/") {
       return child;
     }
-    if (route.settings.name == "/product_detail_screen") {
-      return FadeTransition(
-        opacity: animation,
+    if (route.settings.name == "/place_detail") {
+      return SlideTransition(
+        position: offsetAnimation,
         child: child,
       );
     }
+    // if (route.settings.name == "/") {
+    //   return FadeTransition(
+    //     opacity: animation,
+    //     child: child,
+    //   );
+    // }
     return SlideTransition(
-      position: offsetAnimation,
+      position: offsetAnimation2,
       child: child,
     );
   }
