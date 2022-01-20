@@ -1,6 +1,8 @@
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:my_app/models/place.dart';
+import 'package:my_app/screens/map_screen.dart';
 import 'package:provider/provider.dart';
 import '../providers/great_places.dart';
 
@@ -29,6 +31,20 @@ class PlaceDetailScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.grey, fontSize: 20),
           ),
+          SizedBox(
+            height: 10,
+          ),
+          MaterialButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => MapScreen(
+                  initialLocation: selectedPlace.location as PlaceLocation,
+                ),
+              ));
+            },
+            splashColor: Colors.white,
+            child: Text('View on Map'),
+          )
         ],
       ),
     );

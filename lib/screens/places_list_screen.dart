@@ -43,7 +43,11 @@ class PlaceListScreen extends StatelessWidget {
                                   title: Text(greaPlaces.items[i].title),
                                   subtitle: Text(greaPlaces
                                       .items[i].location!.address as String),
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context).pushNamed(
+                                        '/place_detail',
+                                        arguments: greaPlaces.items[i].id);
+                                  },
                                 ),
                                 itemCount: greaPlaces.items.length,
                               ),

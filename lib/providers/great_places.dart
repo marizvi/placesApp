@@ -49,7 +49,7 @@ class GreatPlaces with ChangeNotifier {
     DBHelper.insert('user_places', {
       'id': newPlace.id,
       'title': newPlace.title,
-      'image': newPlace.image!.path,
+      'image': newPlace.image.path,
       'loc_lat': newPlace.location!.latitude,
       'loc_lng': newPlace.location!.longitude,
       'address': newPlace.location!.address as String,
