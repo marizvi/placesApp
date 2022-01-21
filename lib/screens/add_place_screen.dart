@@ -82,10 +82,15 @@ class _AddPlacesListState extends State<AddPlacesList> {
           Expanded(
             // will take all extra available space
             //doing this to not to make button scrollable
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: //AssetImage('lib/assets/images/bac.jpg'),
+                          AssetImage('lib/assets/images/bak10.png'),
+                      fit: BoxFit.contain,
+                      opacity: 0.7)),
               child: SingleChildScrollView(
-                //
                 child: Column(
                   children: [
                     TextField(
@@ -103,7 +108,7 @@ class _AddPlacesListState extends State<AddPlacesList> {
                     Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: Colors.black12,
+                            color: Colors.lightBlue[100],
                             border: Border.all(width: 1),
                             borderRadius: BorderRadius.circular(10)),
                         width: _placeLocation == null ? 0 : 200,
@@ -119,12 +124,14 @@ class _AddPlacesListState extends State<AddPlacesList> {
 
           // Spacer(),
           ElevatedButton.icon(
-              onPressed: _savePlace,
-              icon: Icon(Icons.add),
-              label: Text('Add'),
-              style: ElevatedButton.styleFrom(
-                  //to remove extra margins
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap)),
+            onPressed: _savePlace,
+            icon: Icon(Icons.add),
+            label: Text('Add'),
+            style: ElevatedButton.styleFrom(
+                //to remove extra margins
+                primary: Colors.pink[300],
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+          ),
         ],
       ),
     );

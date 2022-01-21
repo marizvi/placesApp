@@ -22,9 +22,9 @@ class PlaceListScreen extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: //AssetImage('lib/assets/images/bac.jpg'),
-                      AssetImage('lib/assets/images/bac4.jpg'),
+                      AssetImage('lib/assets/images/bak14.png'),
                   fit: BoxFit.cover,
-                  opacity: 0.7)),
+                  opacity: 1)),
           child: FutureBuilder(
               future: Provider.of<GreatPlaces>(context, listen: false)
                   .fetchAndSetPlaces(),
@@ -46,7 +46,7 @@ class PlaceListScreen extends StatelessWidget {
                                 padding: EdgeInsets.all(8),
                                 child: ListView.builder(
                                   itemBuilder: (ctx, i) => Card(
-                                    color: Colors.white.withOpacity(0.9),
+                                    color: Colors.white,
                                     elevation: 5,
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8)),
