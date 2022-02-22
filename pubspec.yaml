@@ -39,6 +39,7 @@ dependencies:
   geocoder: ^0.2.1
   geocode: ^1.0.1
   flutter_svg: ^1.0.2
+  flutter_config: ^1.0.8
 
   
 
