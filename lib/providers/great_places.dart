@@ -41,7 +41,7 @@ class GreatPlaces with ChangeNotifier {
     final newPlace = Place(
         id: DateTime.now().toString(),
         title: title,
-        image: image,
+        image: image as File,
         location: updatedLocation);
     _items.add(newPlace);
     notifyListeners();
@@ -49,7 +49,7 @@ class GreatPlaces with ChangeNotifier {
     DBHelper.insert('user_places', {
       'id': newPlace.id,
       'title': newPlace.title,
-      'image': newPlace.image!.path,
+      'image': newPlace.image.path,
       'loc_lat': newPlace.location!.latitude,
       'loc_lng': newPlace.location!.longitude,
       'address': newPlace.location!.address as String,
@@ -78,5 +78,9 @@ class GreatPlaces with ChangeNotifier {
                 address: item['address'] as String)))
         .toList();
     notifyListeners();
+  }
+
+  Place findById(String id) {
+    return _items.firstWhere((element) => element.id == id);
   }
 }

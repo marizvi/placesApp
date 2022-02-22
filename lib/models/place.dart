@@ -15,7 +15,7 @@ class PlaceLocation {
 class Place {
   final String id;
   final String title;
-  final File? image; //dart:io
+  final File image; //dart:io
   final PlaceLocation? location;
 
   Place(

@@ -5,6 +5,7 @@ import 'package:my_app/widgets/location_input.dart';
 import 'dart:io';
 import 'package:provider/provider.dart';
 import '../providers/great_places.dart';
+import 'package:geocoder/geocoder.dart';
 
 class AddPlacesList extends StatefulWidget {
   @override
@@ -13,8 +14,10 @@ class AddPlacesList extends StatefulWidget {
 
 class _AddPlacesListState extends State<AddPlacesList> {
   final _titleController = TextEditingController();
+  final _locationController = TextEditingController();
   File? _pickedImage;
   PlaceLocation? _placeLocation;
+  String address = '';
   // we are creating selectimage and selectlocation methods here
   // because we have to save form at this page only
   // and also have to transfer all 3 data togethor
@@ -23,9 +26,18 @@ class _AddPlacesListState extends State<AddPlacesList> {
     this._pickedImage = pickedImage;
   }
 
-  void _selectLocation(double lat, double lang) {
+  void _selectLocation(double lat, double lang) async {
     //..
     _placeLocation = PlaceLocation(latitude: lat, longitude: lang);
+
+    //this section is from my side
+    final coordinates = new Coordinates(lat, lang);
+    var addresses =
+        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    address = '${addresses.first.addressLine}';
+    setState(() {
+      _locationController.text = address;
+    });
   }
 
   void _savePlace() {
@@ -70,10 +82,15 @@ class _AddPlacesListState extends State<AddPlacesList> {
           Expanded(
             // will take all extra available space
             //doing this to not to make button scrollable
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: //AssetImage('lib/assets/images/bac.jpg'),
+                          AssetImage('lib/assets/images/bak10.png'),
+                      fit: BoxFit.contain,
+                      opacity: 0.7)),
               child: SingleChildScrollView(
-                //
                 child: Column(
                   children: [
                     TextField(
@@ -88,6 +105,17 @@ class _AddPlacesListState extends State<AddPlacesList> {
                       height: 10,
                     ),
                     LocationInput(_selectLocation),
+                    Container(
+                        padding: EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            color: Colors.lightBlue[100],
+                            border: Border.all(width: 1),
+                            borderRadius: BorderRadius.circular(10)),
+                        width: _placeLocation == null ? 0 : 200,
+                        child: Text(
+                          address,
+                          textAlign: TextAlign.center,
+                        ))
                   ],
                 ),
               ),
@@ -96,12 +124,14 @@ class _AddPlacesListState extends State<AddPlacesList> {
 
           // Spacer(),
           ElevatedButton.icon(
-              onPressed: _savePlace,
-              icon: Icon(Icons.add),
-              label: Text('Add'),
-              style: ElevatedButton.styleFrom(
-                  //to remove extra margins
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap)),
+            onPressed: _savePlace,
+            icon: Icon(Icons.add),
+            label: Text('Add'),
+            style: ElevatedButton.styleFrom(
+                //to remove extra margins
+                primary: Colors.pink[300],
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+          ),
         ],
       ),
     );
